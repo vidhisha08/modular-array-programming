@@ -1,0 +1,542 @@
+Name: Vidhisha Bollupalli Nataraj
+ID: 24179949
+Date: 27/10/2025
+
+CE4703 COMPUTER SOFTWARE 3
+ASSIGNMENT #1
+
+
+------------------------------------------------------------
+## LIST OF MODULES & MENU FUNCTIONS
+------------------------------------------------------------
+***** MODULES *****
+1.  array_creations.c
+2.  array_manipulation.c
+3.  array_calculation.c
+
+***** MENU FUNCTIONS *****
+menu_functions.c:
+----------------
+1. menu_function_1() 
+2. menu_function_2()
+3. menu_function_3()
+
+
+
+------------------------------------------------------------
+## FUNCTIONS AND PROTOTYPES OF MODULES
+------------------------------------------------------------
+
+--------------------------------------------
+||||||||||||||| MENU FUNCTIONS |||||||||||||
+--------------------------------------------
+**************** MF1 ****************
+Function:
+---------
+void menu_function_1(void);
+--> Performs operations using working functions 3,4,5,7,8,9,10
+
+
+**************** MF2 ****************
+Function:
+---------
+void menu_function_2(void);
+--> Performs operations using working functions 2,3,5,6,8
+
+
+**************** MF3 ****************
+Function:
+---------
+void menu_function_3(void);
+--> Performs operations using working functions 2,9,10,11,12,13,14,15
+
+
+------------------------------------
+|||||||||||||| MODULES |||||||||||||
+------------------------------------
+**************** array_creation ****************
+--> Contains working functions: 1, 2, 3, 4
+
+1)
+Function(s):
+-----------
+int random_int(int l_limit, int u_limit);
+
+Specification:
+-------------
+This function is to return a random integer. Both the upper and lower 
+limits are inclusive. For example, if 10 and 20 are the limits, then 
+both 10 and 20 may be returned as the random integer.
+
+Pseudocode:
+----------
+FUNCTION
+	rand_num = random integer from l_limit to u_limit
+	return rand_num
+END
+
+2)
+Function(s):
+-----------
+void fill_array(int arr[], int capacity);
+
+Specification:
+-------------
+This function fills an array with inputs from the keyboard given by 
+the user. Entering a negative value will stop the input process and 
+all the remaining elements (if any) will be populated with '-1'
+
+Pseudocode:
+----------
+FUNCTION
+	FOR i in array (capacity)
+		GET input from user
+		IF input < 0 THEN 
+			BREAK
+		END IF
+	END FOR
+
+	FOR i in array (capacity)
+		FILL rest of array with -1
+	END FOR
+END
+
+3)
+Function(s):
+-----------
+int random_int(int l_limit, int u_limit)
+void fill_array_random(int arr[], int size, int capacity, int max, int min);
+
+Specification:
+-------------
+This function fills an array with random values in range min to max
+(both incluive) using the wf_1 function. After filling the array with 'size' number of
+element, it will then fill the remaining elements with '-1'(they are unused)
+
+Pseudocode:
+----------
+FUNCTION random_int(l_limit, u_limit)
+	rand_num = random integer from l_limit to u_limit
+	return rand_num
+END
+
+FUNCTION fill_array_random(arr, size, capcity, max, min)
+	FOR i in array (size)
+		arr[i] = random integer
+	END FOR
+
+	FOR i in array (capacity)
+		arr[i] = -1 
+	END FOR
+END
+
+4)
+Function(s):
+-----------
+void clear_array(int arr[], int capacity);
+
+Specification:
+-------------
+This function is used to clear an array. It removes all the elements
+of an array of integers. Which means, that it marks all the elements
+as "unused" (sets value to -1)
+
+Pseudocode:
+----------
+FUNCTION clear_array(arr, capacity)
+	FOR i in array (capacity)
+		arr[i] = -1 // mark as unused
+	END FOR
+END
+
+
+************* array_manipulation *************
+--> Contains working functions: 5, 6, 7, 8, 9, 10, 15
+
+5)
+Function(s):
+-----------
+void sort_array(int arr[], int capacity);
+
+Specification:
+-------------
+This function is used to sort an array of integers in ascending order
+using the bubble sort method. The bubble sort method iterates through the
+list, compares adjacent elements and swaps them if they are in the
+wrong order. This continues until the list is sorted. All unused
+elements (-1), if any, remain at the end of the array.
+
+Pseudocode:
+----------
+FUNCTION sort_array(arr, capacity)
+	FOR i in array (capacity - 1)
+		FOR j in array (capacity - i - 1)
+			IF arr[j] > arr[j+1]
+				SWAP arr[j] and arr[j+1]
+			END IF
+		END FOR
+	END FOR
+
+	FOR i in array (capacity)
+		FOR j in array (capacity - i - 1)
+			IF arr[j] == -1 AND arr[j+1] != -1 
+				SWAP arr[j] and arr[j+1]
+			END IF
+		END FOR
+	END FOR
+END
+
+6)
+Function(s):
+-----------
+void randomize_array(int arr[], int capacity);
+
+Specification:
+-------------
+This function is used to randomize an array of integers.
+It first collects all the used elements in a temporary array,
+shuffles them, and then places them back into the original array
+with all unused elements (-1) at the end.
+
+Pseudocode:
+----------
+FUNCTION randomize_array(arr, capacity)
+	used[]
+	usedCount = 0
+
+	//collect used elements
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			ADD element to used[]
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	//shuffle used elements
+	FOR i FROM usedCount - 1 TO 1
+		j = random integer
+		SWAP used[i] AND used[j]
+	END FOR
+
+	//put shuffled in array
+	FOR i FROM 0 to usedCount
+		arr[i] = used[i]
+	END FOR
+
+	//fill rest with -1
+	FOR i FROM usedCount TO capacity
+		arr[i] = -1
+	END FOR
+END
+
+7)
+Function(s):
+-----------
+void print_used(int arr[], int capacity);
+
+Specification:
+-------------
+This function first counts the number of used elements in the array.
+Using the count in the loop, it prints the used elements. If there are no used
+element, it print an empty list "[]"
+
+Pseudocode:
+----------
+FUNCTION print_used(arr, capacity)
+	count = 0
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			INCREMENT count
+		END IF
+		ELSE 
+			break
+		END ELSE
+	END FOR
+
+	FOR i FROM 0 TO count
+		PRINT arr[i]
+	END FOR
+END
+
+8)
+Function(s):
+-----------
+void print_all(int arr[], int capacity);
+
+Specification:
+-------------
+This function iterates through an array using a loop, and
+then print all the elements (used and unused (-1)) in the form 
+of "{n1, n2, n3,..}"
+
+Pseudocode:
+----------
+FUNCTION print_all(arr, capacity)
+	FOR i FROM 0 TO capacity
+		PRINT arr[i]
+	END FOR
+END
+
+9)
+Function(s):
+-----------
+int min_element(int arr[], int capacity);
+
+Specification:
+-------------
+This function returns the minimum element from an array  of integers
+with a given capacity. It iterates through the array to find and
+prints the minimum value.
+
+Pseudocode:
+----------
+FUNCTION min_element(arr, capacity)
+	count = 0
+	//count used
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	IF count == 0 THEN
+		PRINT "no used elements"
+	END IF
+
+	min = arr[i]
+	FOR i FROM 0 TO count 
+		IF arr[i] < min THEN 
+			min = arr[i]
+		END IF
+	END FOR
+END
+
+10)
+Function(s):
+-----------
+int max_element(int arr[], int capacity);
+
+Specification:
+-------------
+This function returns the maximum element from an array  of integers
+with a given capacity. It iterates through the array to find and
+prints the maximum value.
+
+Pseudocode:
+----------
+FUNCTION max_element(arr, capacity)
+	count = 0
+	//count used
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	IF count == 0 THEN
+		PRINT "no used elements"
+	END IF
+
+	max = arr[i]
+	FOR i FROM 0 TO count 
+		IF arr[i] > max THEN 
+			max = arr[i]
+		END IF
+	END FOR
+END
+
+15)
+Function(s):
+-----------
+int count_used(int arr[], int capacity);
+
+Specification:
+-------------
+This function iterates through the array and counts the number of elements
+until it encounters the first "-1" value, which indicates the end of used elements.
+it then prints the count of used elements.
+
+Pseudocode:
+----------
+FUNCTION count_used(arr, capacity)
+	count = 0
+	FOR i in array (capacity)
+		IF arr[i] != -1 THEN 
+			INCREMENT count
+		END IF
+	END FOR
+
+	RETURN COUNT
+END	
+
+
+**************** array_calculation ****************
+--> Contains working functions: 11, 12, 13, 14
+
+11)
+Function(s):
+-----------
+double print_average(int arr[], int capacity);
+
+Specification:
+-------------
+This function iterates through an array using a loop, and
+then calculates the average of all the used elements (not -1)
+in the array and prints it along with the given array. If there
+are no elements, it returns 0.0.
+
+Pseudocode:
+----------
+FUNCTION print_average(arr, capacity)
+	sum = 0
+	count = 0
+
+	//sum of used elements
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			ADD TO sum 
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	//calculate average
+	average = sum / count
+END
+
+12)
+Function(s):
+-----------
+double print_median(int arr[], int capacity);
+
+Specification:
+-------------
+This function iterates through an array using a loop,
+extracts the used elements (not -1) into a new array,
+sorts that array using bubble sort, and then calculates
+the median of the used elements. If there are even number of elements, 
+the median is the average of the middle two numbers,  if it odd then 
+the median is the middle element. It then prints the array
+of used elements and their median. If there are no used
+elements, it returns 0.0.
+
+Pseudocode:
+----------
+FUNCTION print_median(arr, capacity)
+	used[]
+	count = 0
+
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			used[count] = arr[i]
+			INCREMENT count
+		END IF
+	END FOR
+
+	//sort elements 
+	FOR i in array (capacity - 1)
+		FOR j in array (capacity - i - 1)
+			IF arr[j] > arr[j+1]
+				SWAP arr[j] and arr[j+1]
+			END IF
+		END FOR
+	END FOR
+
+	//calculate median
+	IF count % 2 = 1 THEN 
+		median = used[count / 2]
+		ELSE 
+			median = (used[(count / 2) - 1] + used[count / 2]) / 2.0
+		END ELSE
+	END IF
+
+	RETURN median
+END
+
+13)
+Function(s):
+-----------
+double print_variance(int arr[], int capacity);
+
+Specification:
+-------------
+This function takes an array of elements, using only the used elements,
+it finds the variance. It find the average, calculates the sum 
+of the squared differences of the elements, and finally divides it 
+by the total number of used elements.
+
+Pseudocode:
+----------
+FUNCTION print_variance(arr, capacity)
+	sum = 0
+	count = 0
+
+	//sum of used elements
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			ADD TO sum 
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	average = sum / count
+
+	sum_of_difference = 0.0
+	FOR i in array (capacity)
+		IF arr[i] != -1 THEN 
+			difference = arr[i] - average
+			ADD difference * difference TO sum_of_difference
+		END IF
+	END FOR
+
+	//calculate variance
+	variance = sum_of_difference / count
+
+	RETURN variance
+END
+
+14)
+Function(s):
+-----------
+double print_standard_deviation(int arr[], int capacity);
+
+Specification:
+-------------
+This function takes an array of elements, using only the used elements,
+it finds the standard deviation. It find the average, calculates the 
+sum of the squared differences of the elements, and finally divides it 
+by the total number of used elements to get variance, then takes the square 
+root of the variance to get the standard deviation.
+
+Pseudocode:
+----------
+FUNCTION  print_standard_deviation(arr, capacity)
+	sum = 0
+	count = 0
+
+	//sum of used elements
+	FOR i in array (capacity)
+		IF arr[i] != -1
+			ADD TO sum 
+			INCREMENT usedCount
+		END IF
+	END FOR
+
+	average = sum / count
+
+	sum_of_difference = 0.0
+	FOR i in array (capacity)
+		IF arr[i] != -1 THEN 
+			difference = arr[i] - average
+			ADD difference * difference TO sum_of_difference
+		END IF
+	END FOR
+
+	variance = sum_of_difference / count
+	//calculate standard deviation
+	std_dev = sqrt(variance)
+
+	RETURN std_dev
+END
+
+
+//////////////////////////////////////////////////////// END OF REPORT ////////////////////////////////////////////////////////
